@@ -1,0 +1,41 @@
+name: Deploy to Cloudflare
+
+# 部署前请先在 Cloudflare 控制台手动创建 D1 / KV，并把 id 填入 wrangler.toml（见 README）。
+# 本工作流只负责：校验资源 id → 部署 → 注入 JWT 密钥，不代建任何资源。
+on:
+  workflow_dispatch:
+  push:
+    branches: [master, main]
+    paths-ignore:
+      - 'README.md'
+      - 'LICENSE'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install wrangler
+        run: npm install -g wrangler@4
+
+      - name: Check resource ids in wrangler.toml
+        run: node scripts/provision.mjs --check
+
+      - name: Deploy Worker
+        run: wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Ensure JWT secret
+        run: node scripts/provision.mjs --jwt-secret
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

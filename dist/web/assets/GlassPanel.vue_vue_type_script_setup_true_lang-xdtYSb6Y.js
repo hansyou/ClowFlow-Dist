@@ -1,0 +1,1 @@
+import{d as s,c as n,x as l,C as t,B as d,o}from"./index-CVlekhhx.js";const c=s({__name:"GlassPanel",props:{variant:{default:"default"},padding:{}},setup(a){return(e,i)=>(o(),n("div",{class:t(["glass",`glass--${a.variant}`]),style:l(a.padding?{padding:a.padding}:void 0)},[d(e.$slots,"default")],6))}});export{c as _};

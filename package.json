@@ -1,0 +1,20 @@
+{
+  "name": "cloudflow-runtime",
+  "version": "0.7.0",
+  "private": true,
+  "type": "module",
+  "description": "CloudFlow 部署镜像运行时（Docker 版用，不含源码）",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "d1:create": "wrangler d1 create cloudflow-d1",
+    "kv:create": "wrangler kv namespace create cloudflow-kv",
+    "provision:check": "node scripts/provision.mjs --check",
+    "provision:jwt": "node scripts/provision.mjs --jwt-secret"
+  },
+  "dependencies": {
+    "miniflare": "4.20260730.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
