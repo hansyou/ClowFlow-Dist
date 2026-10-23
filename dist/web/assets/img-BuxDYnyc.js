@@ -1,0 +1,1 @@
+import{J as o}from"./index-DdP_AD5Q.js";function a(e){if(!e)return null;const t=e.trim();if(!t)return null;if(/^(https?:)?\/\//i.test(t))return t;const n=encodeURIComponent(o()??""),i=t.includes("?")?"&":"?",r=`${t}${i}token=${n}`;return t.startsWith("/")||t.startsWith("api/images/")?r:`/api/images/${t.replace(/^\/+/,"")}${i}token=${n}`}export{a as i};
