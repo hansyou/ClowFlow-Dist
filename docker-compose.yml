@@ -1,0 +1,12 @@
+# CloudFlow Docker 部署：docker compose up -d --build
+# 镜像内是与 Cloudflare 版完全相同的编译产物，运行在本地 workerd 上。
+services:
+    cloudflow:
+        image: hansyou/cloudflow-dist:latest
+        container_name: cloudflow
+        restart: unless-stopped
+        ports:
+            - "8787:8787"
+        volumes:
+            # D1 / R2 / KV 全部持久化在这里，备份该卷即备份全部数据
+            - ./data:/data

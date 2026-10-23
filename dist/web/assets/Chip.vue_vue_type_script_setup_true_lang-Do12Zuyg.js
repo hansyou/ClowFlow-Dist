@@ -1,0 +1,1 @@
+import{d as t,c,C as l,y as n,o}from"./index-DdP_AD5Q.js";const p=t({__name:"Chip",props:{active:{type:Boolean},clickable:{type:Boolean},tone:{default:"default"}},setup(e){return(a,i)=>(o(),c("span",{class:l(["chip",[e.active?"chip--active":"",e.clickable?"chip--click":"",e.tone!=="default"?`chip--${e.tone}`:""]])},[n(a.$slots,"default")],2))}});export{p as _};
