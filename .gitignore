@@ -1,0 +1,7 @@
+data/
+node_modules/
+.env
+.wrangler/
+wrangler.toml
+pnpm-lock.yaml
+pnpm-workspace.yaml

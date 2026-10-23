@@ -1,0 +1,1 @@
+import{L as o,r as n,D as i}from"./index-CVlekhhx.js";const l=o("settings",()=>{const e=n(null),s=n(!1);async function a(){const t=await i.get("/settings");return e.value=t,s.value=!0,t}async function u(t){await i.put("/settings",t),e.value?e.value={...e.value,...t}:await a()}return{settings:e,loaded:s,load:a,save:u}});export{l as u};
