@@ -1,4 +1,4 @@
-name = "cloudflow"
+name = "cloudflow-test"
 main = "dist/worker.js"
 # 全仓统一 compatibility_date = 2026-08-06：受 Docker 版 miniflare(4.20260730.0) 内置 workerd
 # 上限约束（云端支持旧日期永久有效），云端/本地同一天；升级 miniflare 后可整体上调
