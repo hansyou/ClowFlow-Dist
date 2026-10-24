@@ -1,0 +1,51 @@
+name = "cloudflow"
+main = "dist/worker.js"
+# 全仓统一 compatibility_date = 2026-08-06：受 Docker 版 miniflare(4.20260730.0) 内置 workerd
+# 上限约束（云端支持旧日期永久有效），云端/本地同一天；升级 miniflare 后可整体上调
+compatibility_date = "2026-08-06"
+compatibility_flags = ["nodejs_compat"]
+
+# 前端静态资源（dist/web/，随仓库一起发布）
+[assets]
+directory = "dist/web"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+run_worker_first = true   # 所有请求先进 Worker（/api/* 需要 Worker 处理），静态资源在 Worker 内回退
+
+# 本地调试：监听所有网卡（http://0.0.0.0:8787）
+[dev]
+ip = "0.0.0.0"
+port = 8787
+
+# D1 数据库（默认命名 cloudflow-d1）：需手动创建并填写 id
+[[d1_databases]]
+binding = "DB"
+database_name = "cloudflow-d1"
+database_id = "a1e58d13-f9a9-4daf-8e18-a829c4dc4a7f"
+
+# R2 存储桶（默认命名 cloudflow-images）：无需手动创建
+[[r2_buckets]]
+binding = "IMAGES"
+bucket_name = "cloudflow-images"
+
+# KV 命名空间（默认命名 cloudflow-kv）：需手动创建并填写 id
+# 注：KV 的名字是创建时的标题（wrangler kv namespace create cloudflow-kv），
+#     wrangler 配置只有 binding / id，名字不进配置
+[[kv_namespaces]]
+binding = "CACHE"
+id = "5cd6214637b0428e9d7102b029926b5e"
+
+[vars]
+TMDB_API_BASE = "https://api.themoviedb.org/3"
+TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p"
+# 115 开放平台
+OPEN115_API_BASE = "https://proapi.115.com"
+OPEN115_PASSPORT_BASE = "https://passportapi.115.com"
+OPEN115_QRCODE_BASE = "https://qrcodeapi.115.com"
+# OpenList 令牌服务（115 令牌续期）
+OPLIST_API_BASE = "https://api.oplist.org"
+
+# 定时任务：每 5 分钟唤醒一次作为调度心跳，
+# 是否真正执行扫描由设置页的 cron 表达式决定（默认每天 7–23 点每 4 小时）
+[triggers]
+crons = ["*/5 * * * *"]
