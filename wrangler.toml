@@ -20,13 +20,13 @@ port = 8787
 # D1 数据库（默认命名 cloudflow-d1）：需手动创建并填写 id
 [[d1_databases]]
 binding = "DB"
-database_name = "cloudflow-d1"
+database_name = "cloudflow-d1-test"
 database_id = "a1e58d13-f9a9-4daf-8e18-a829c4dc4a7f"
 
 # R2 存储桶（默认命名 cloudflow-images）：无需手动创建
 [[r2_buckets]]
 binding = "IMAGES"
-bucket_name = "cloudflow-images"
+bucket_name = "cloudflow-images-test"
 
 # KV 命名空间（默认命名 cloudflow-kv）：需手动创建并填写 id
 # 注：KV 的名字是创建时的标题（wrangler kv namespace create cloudflow-kv），
