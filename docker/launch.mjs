@@ -29,7 +29,6 @@ const VARS = {
   OPEN115_API_BASE: process.env.OPEN115_API_BASE || 'https://proapi.115.com',
   OPEN115_PASSPORT_BASE: process.env.OPEN115_PASSPORT_BASE || 'https://passportapi.115.com',
   OPEN115_QRCODE_BASE: process.env.OPEN115_QRCODE_BASE || 'https://qrcodeapi.115.com',
-  OPLIST_API_BASE: process.env.OPLIST_API_BASE || 'https://api.oplist.org',
 };
 
 const mf = new Miniflare({

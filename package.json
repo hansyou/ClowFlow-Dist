@@ -1,6 +1,6 @@
 {
   "name": "cloudflow-runtime",
-  "version": "0.7.0",
+  "version": "0.8.1",
   "private": true,
   "type": "module",
   "description": "CloudFlow 部署镜像运行时（Docker 版用，不含源码）",
